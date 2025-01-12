@@ -1,4 +1,4 @@
-# Smiple math game
+# Simple math game
 
 I created it to test my niece's math test.
 
