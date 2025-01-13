@@ -110,12 +110,12 @@ export default function MathGame() {
       <div className="w-full text-xl font-bold text-center py-2">
         Score : <span className='text-green-700'>{score}</span> / <span className='text-blue-700'>{totalScore}</span>
       </div>
-      <CardContent className="space-y-4">
+      <CardContent className="space-y-2">
         <div className="flex justify-between items-center space-x-4">
           <div className="space-y-1">
             <Label htmlFor="numDigits">Number of Digits</Label>
             <Select value={numDigits.toString()} onValueChange={handleNumDigitsChange}>
-              <SelectTrigger className="w-1/3">
+              <SelectTrigger className="w-full">
                 <SelectValue placeholder="Number of Digits" />
               </SelectTrigger>
               <SelectContent>
@@ -130,7 +130,7 @@ export default function MathGame() {
           <div className="space-y-1">
             <Label htmlFor="numTerms">Number of Terms</Label>
             <Select value={numTerms.toString()} onValueChange={handleNumTermsChange}>
-              <SelectTrigger className="w-1/3">
+              <SelectTrigger className="w-full">
                 <SelectValue placeholder="Number of Terms" />
               </SelectTrigger>
               <SelectContent>
@@ -145,7 +145,7 @@ export default function MathGame() {
           <div className="space-y-1">
             <Label htmlFor="allowNegative">Allow Negative Number</Label>
             <Select value={allowNegative.toString()} onValueChange={handleAllowNegativeChange}>
-              <SelectTrigger className="w-1/3">
+              <SelectTrigger className="w-full">
                 <SelectValue placeholder="Allow Negative Number" />
               </SelectTrigger>
               <SelectContent>
