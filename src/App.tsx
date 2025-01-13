@@ -165,7 +165,7 @@ export default function MathGame() {
           Reset
         </Button>
         <CardFooter className="p-4 text-center w-full">
-          Made with ❤️ by &mbsp; &nbsp;<a className="underline" target="_blank" href="https://github.com/HazzazBinFaiz">MD. Hazzaz Bin Faiz</a>
+          Made with ❤️ by &nbsp; &nbsp;<a className="underline" target="_blank" href="https://github.com/HazzazBinFaiz">MD. Hazzaz Bin Faiz</a>
         </CardFooter>
       </CardContent>
     </Card>
