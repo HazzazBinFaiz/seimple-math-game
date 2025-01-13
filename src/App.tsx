@@ -13,12 +13,12 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle, CardFooter }
 import { Check, X } from "lucide-react"
 
 export default function MathGame() {
-  const generateProblem = (digits: number, numTerms: number) => {
+  const generateProblem = (digits: number, numTerms: number, allowNegative: boolean) => {
     const terms = Array.from({ length: numTerms }, () => {
       const min = Math.pow(10, digits - 1)
       const max = Math.pow(10, digits) - 1
       const number = Math.floor(Math.random() * (max - min + 1)) + min;
-      return Math.random() >= 0.5 ? number : -number;
+      return allowNegative ? (Math.random() >= 0.3 ? number : -number) : number;
     })
     // Sort terms in descending order to ensure the result is non-negative
     terms.sort((a, b) => b - a)
@@ -28,6 +28,7 @@ export default function MathGame() {
 
   const [numDigits, setNumDigits] = useState(2)
   const [numTerms, setNumTerms] = useState(2)
+  const [allowNegative, setAllowNegative] = useState('Yes')
   const [currentProblem, setCurrentProblem] = useState<{ terms: number[], correctAnswer: number }>({ terms: [], correctAnswer: 0 })
   const [userAnswer, setUserAnswer] = useState('')
   const [showFeedback, setShowFeedback] = useState<number|null>(null)
@@ -53,7 +54,7 @@ export default function MathGame() {
     if (answerRef && answerRef.current) {
       answerRef.current.focus();
     }
-    setCurrentProblem(generateProblem(numDigits, numTerms));
+    setCurrentProblem(generateProblem(numDigits, numTerms, allowNegative == 'Yes'));
   }
 
   const reset = () => {
@@ -62,7 +63,7 @@ export default function MathGame() {
     }
     setTotalScore(0);
     setScore(0);
-    setCurrentProblem(generateProblem(numDigits, numTerms));
+    setCurrentProblem(generateProblem(numDigits, numTerms, allowNegative == 'Yes'));
   }
 
   const handleNumDigitsChange = (value: string) => {
@@ -70,7 +71,7 @@ export default function MathGame() {
       return;
   }
     setNumDigits(parseInt(value, 10))
-    setCurrentProblem(generateProblem(parseInt(value, 10), numTerms))
+    setCurrentProblem(generateProblem(parseInt(value, 10), numTerms, allowNegative == 'Yes'))
     setTotalScore(0);
     setScore(0);
   }
@@ -80,13 +81,24 @@ export default function MathGame() {
       return;
   }
     setNumTerms(parseInt(value, 10))
-    setCurrentProblem(generateProblem(numDigits, parseInt(value, 10)));
+    setCurrentProblem(generateProblem(numDigits, parseInt(value, 10), allowNegative == 'Yes'));
     setTotalScore(0);
     setScore(0);
   }
 
+  const handleAllowNegativeChange = (value: string) => {
+    if (!confirm('This will reset the game. Are you sure ?')) {
+        return;
+    }
+    setAllowNegative(value)
+    setCurrentProblem(generateProblem(numDigits, parseInt(value, 10), value == 'Yes'));
+    setTotalScore(0);
+    setScore(0);
+  }
+
+
   useEffect(() => {
-    setCurrentProblem(generateProblem(numDigits, numTerms));
+    setCurrentProblem(generateProblem(numDigits, numTerms, allowNegative == 'Yes'));
   }, [])
 
   return (
@@ -127,6 +139,18 @@ export default function MathGame() {
                     {i + 2}
                   </SelectItem>
                 ))}
+              </SelectContent>
+            </Select>
+          </div>
+          <div className="space-y-1">
+            <Label htmlFor="allowNegative">Allow Negative Number</Label>
+            <Select value={allowNegative.toString()} onValueChange={handleAllowNegative}>
+              <SelectTrigger className="w-[180px]">
+                <SelectValue placeholder="Allow Negative Number" />
+              </SelectTrigger>
+              <SelectContent>
+                <SelectItem value="Yes">Yes</SelectItem>
+                <SelectItem value="No">No</SelectItem>
               </SelectContent>
             </Select>
           </div>
