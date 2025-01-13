@@ -9,7 +9,7 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select"
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
+import { Card, CardContent, CardDescription, CardHeader, CardTitle, CardFooter } from "@/components/ui/card"
 import { Check, X } from "lucide-react"
 
 export default function MathGame() {
@@ -57,12 +57,18 @@ export default function MathGame() {
   }
 
   const reset = () => {
+    if (!confirm('Do you really want to reset the game ?')) {
+        return;
+    }
     setTotalScore(0);
     setScore(0);
     setCurrentProblem(generateProblem(numDigits, numTerms));
   }
 
   const handleNumDigitsChange = (value: string) => {
+    if (!confirm('This will reset the game. Are you sure ?')) {
+      return;
+  }
     setNumDigits(parseInt(value, 10))
     setCurrentProblem(generateProblem(parseInt(value, 10), numTerms))
     setTotalScore(0);
@@ -70,6 +76,9 @@ export default function MathGame() {
   }
 
   const handleNumTermsChange = (value: string) => {
+    if (!confirm('This will reset the game. Are you sure ?')) {
+      return;
+  }
     setNumTerms(parseInt(value, 10))
     setCurrentProblem(generateProblem(numDigits, parseInt(value, 10)));
     setTotalScore(0);
@@ -155,7 +164,9 @@ export default function MathGame() {
         <Button className="w-full mt-4" variant={'destructive'} onClick={reset}>
           Reset
         </Button>
-
+        <CardFooter>
+          Made with ❤️ by <a className="underline" target="_blank" href="https://github.com/HazzazBinFaiz">MD. Hazzaz Bin Faiz</a>
+        </CardFooter>
       </CardContent>
     </Card>
   )
