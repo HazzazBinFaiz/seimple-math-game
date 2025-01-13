@@ -144,7 +144,7 @@ export default function MathGame() {
           </div>
           <div className="space-y-1">
             <Label htmlFor="allowNegative">Allow Negative Number</Label>
-            <Select value={allowNegative.toString()} onValueChange={handleAllowNegative}>
+            <Select value={allowNegative.toString()} onValueChange={handleAllowNegativeChange}>
               <SelectTrigger className="w-[180px]">
                 <SelectValue placeholder="Allow Negative Number" />
               </SelectTrigger>
