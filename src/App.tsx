@@ -91,7 +91,7 @@ export default function MathGame() {
         return;
     }
     setAllowNegative(value)
-    setCurrentProblem(generateProblem(numDigits, parseInt(value, 10), value == 'Yes'));
+    setCurrentProblem(generateProblem(numDigits, numTerms, value == 'Yes'));
     setTotalScore(0);
     setScore(0);
   }
@@ -102,7 +102,7 @@ export default function MathGame() {
   }, [])
 
   return (
-    <Card className={`w-full max-w-md mx-auto mt-10 ring-4 ${ showFeedback !== null ? (isCorrect ? 'ring-green-600' : 'ring-red-600') : 'ring-transparent' }`}>
+    <Card className={`w-full max-w-lg mx-auto mt-10 ring-4 ${ showFeedback !== null ? (isCorrect ? 'ring-green-600' : 'ring-red-600') : 'ring-transparent' }`}>
       <CardHeader>
         <CardTitle className="text-2xl font-bold">Math Game</CardTitle>
         <CardDescription>Test your math skills with customizable problems.</CardDescription>
@@ -115,7 +115,7 @@ export default function MathGame() {
           <div className="space-y-1">
             <Label htmlFor="numDigits">Number of Digits</Label>
             <Select value={numDigits.toString()} onValueChange={handleNumDigitsChange}>
-              <SelectTrigger className="w-[180px]">
+              <SelectTrigger className="w-1/3">
                 <SelectValue placeholder="Number of Digits" />
               </SelectTrigger>
               <SelectContent>
@@ -130,7 +130,7 @@ export default function MathGame() {
           <div className="space-y-1">
             <Label htmlFor="numTerms">Number of Terms</Label>
             <Select value={numTerms.toString()} onValueChange={handleNumTermsChange}>
-              <SelectTrigger className="w-[180px]">
+              <SelectTrigger className="w-1/3">
                 <SelectValue placeholder="Number of Terms" />
               </SelectTrigger>
               <SelectContent>
@@ -145,7 +145,7 @@ export default function MathGame() {
           <div className="space-y-1">
             <Label htmlFor="allowNegative">Allow Negative Number</Label>
             <Select value={allowNegative.toString()} onValueChange={handleAllowNegativeChange}>
-              <SelectTrigger className="w-[180px]">
+              <SelectTrigger className="w-1/3">
                 <SelectValue placeholder="Allow Negative Number" />
               </SelectTrigger>
               <SelectContent>
@@ -188,7 +188,7 @@ export default function MathGame() {
         <Button className="w-full mt-4" variant={'destructive'} onClick={reset}>
           Reset
         </Button>
-        <CardFooter className="p-4 text-center w-full">
+        <CardFooter className="p-4 text-center justify-center w-full">
           Made with ❤️ by &nbsp; &nbsp;<a className="underline" target="_blank" href="https://github.com/HazzazBinFaiz">MD. Hazzaz Bin Faiz</a>
         </CardFooter>
       </CardContent>
