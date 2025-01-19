@@ -188,7 +188,7 @@ export default function MathGame() {
         <Button className="w-full mt-4" variant={'destructive'} onClick={reset}>
           Reset
         </Button>
-        <CardFooter className="p-4 text-center justify-center w-full">
+        <CardFooter className="p-4 text-center justify-center w-full text-sm">
           Made with ❤️ by &nbsp; &nbsp;<a className="underline" target="_blank" href="https://github.com/HazzazBinFaiz">MD. Hazzaz Bin Faiz</a>
         </CardFooter>
       </CardContent>
